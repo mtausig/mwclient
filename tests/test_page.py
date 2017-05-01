@@ -239,6 +239,7 @@ class TestPageApiArgs(unittest.TestCase):
             'prop': 'revisions',
             'rvdir': 'older',
             'titles': self.page.page_title,
+            'uselang': None,
             'rvprop': 'content|timestamp',
             'rvlimit': '1'
         }

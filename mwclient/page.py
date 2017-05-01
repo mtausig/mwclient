@@ -421,7 +421,7 @@ class Page(object):
                   dir='older', user=None, excludeuser=None, limit=50,
                   prop='ids|timestamp|flags|comment|user',
                   expandtemplates=False, section=None,
-                  diffto=None):
+                  diffto=None, uselang=None):
         """List revisions of the current page.
 
         API doc: https://www.mediawiki.org/wiki/API:Revisions
@@ -442,6 +442,8 @@ class Page(object):
             diffto (str): Revision ID to diff each revision to. Use "prev",
                           "next" and "cur" for the previous, next and current
                           revision respectively.
+            uselang (str): Language to use for parsed edit comments and other
+                           localized messages.
 
         Returns:
             mwclient.listings.List: Revision iterator
@@ -451,6 +453,7 @@ class Page(object):
                                                             excludeuser=excludeuser, diffto=diffto))
         kwargs['rvdir'] = dir
         kwargs['rvprop'] = prop
+        kwargs['uselang'] = uselang
         if expandtemplates:
             kwargs['rvexpandtemplates'] = '1'
         if section is not None:
